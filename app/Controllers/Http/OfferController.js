@@ -14,7 +14,7 @@ class OfferController {
 
     async form({ params, view }) {
         if (params.id != null) {
-            const offer = await OfferRepository.findBy(params.id);
+            const offer = await OfferRepository.findById(params.id);
 
             return view.render('offer_edit', {
                 'offer': offer.toJSON()
@@ -71,7 +71,7 @@ class OfferController {
 
     async disable({ params, response }) {
         try {
-            const Offer = await OfferRepository.findBy(params.id);
+            const Offer = await OfferRepository.findById(params.id);
 
             var date = new Date();
             date.setDate(date.getDate() - 1);
@@ -95,7 +95,7 @@ class OfferController {
 
     async enable({ params, response }) {
         try {
-            const Offer = await OfferRepository.findBy(params.id);
+            const Offer = await OfferRepository.findById(params.id);
 
             const today = new Date().toISOString().slice(0, 10);
 

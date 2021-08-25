@@ -9,7 +9,7 @@ class OfferRepository {
         return offers.toJSON();
     }
 
-    static async findBy(id) {
+    static async findById(id) {
         return Offer.findOrFail(id);
     }
 

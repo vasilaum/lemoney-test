@@ -12,9 +12,12 @@
     <div class="container">
         <div class="row">
             @each(offer in offers)
-                <div class="col box">
+                <div class="col {{ offer.premium == 1 ? 'box-premium' : 'box' }}">
                     <div class="col-12">
                         <p>{{ offer.advertiser_name }}</p>
+                    </div>
+                    <div class="col-12">
+                        <span>{{ offer.premium == 1 ? 'Preminum Offer' : 'Normal Offer' }}</span>
                     </div>
                     <div class="col-12">
                         <a href="{{ offer.url }}" class="btn btn-success">Shop Now</a>
