@@ -9,7 +9,7 @@ Route.group(() => {
     Route.get('offers', 'OfferController.index').as('offer.index');
     Route.get('offers/form/:id?', 'OfferController.form').as('offer.form');
     Route.post('offers', 'OfferController.store').as('offer.store').validator('StoreOffer');
-    Route.put('offers', 'OfferController.update').as('offer.update').validator('PutOffer');
+    Route.put('offers', 'OfferController.update').as('offer.update').validator('UpdateOffer');
     Route.delete('offers/:id', 'OfferController.destroy').as('offer.destroy');
     Route.put('offers/disable/:id', 'OfferController.disable').as('offer.disable');
     Route.put('offers/enable/:id', 'OfferController.enable').as('offer.enable');

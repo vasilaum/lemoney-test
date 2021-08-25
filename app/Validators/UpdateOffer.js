@@ -1,6 +1,6 @@
 'use strict';
 
-class PutOffer {
+class UpdateOffer {
     get validateAll() {
         return false;
     }
@@ -42,4 +42,4 @@ class PutOffer {
     }
 }
 
-module.exports = PutOffer;
+module.exports = UpdateOffer;
