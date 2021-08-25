@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8"/>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+	<title>offers</title>
+
+    {{ style('https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css') }}
+    {{ style('app') }}
+</head>
+<body>
+    <div class="container col-12">
+        <a href="{{ route('offer.form') }}" class="btn btn-success">New</a>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">URL</th>
+                        <th scope="col">Starts At</th>
+                        <th scope="col">Ends At</th>
+                        <th scope="col">Status</th>
+
+                        <th scope="col">Edit</th>
+                        <th scope="col">Disable</th>
+                        <th scope="col">Destroy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @each(offer in offers)
+                        <tr>
+                            <th scope="row">{{ offer.id }}</th>
+                            <td>{{ offer.advertiser_name }}</td>
+                            <td>{{ offer.url }}</td>
+                            <td>{{ offer.starts_at }}</td>
+                            <td>{{ offer.ends_at == null ? 'No ends time' : offer.ends_at }}</td>
+                            <td>{{ offer.status }}</td>
+
+                            <td><a href="{{ route('offer.form', { id: offer.id }) }}" class="btn btn-warning">Edit</a></td>
+                            <td>
+                                @if(offer.status === 'disabled')
+                                    <a href="#" class="btn btn-info btn-enable-ajax" data-url={{ route('offer.enable', { id: offer.id }) }}>Enable</a>
+                                @else
+                                    <a href="#" class="btn btn-info btn-disable-ajax" data-url={{ route('offer.disable', { id: offer.id }) }}>Disable</a>
+                                @endif
+                            </td>
+                            <td><a href="#" class="btn btn-danger btn-destroy-ajax" data-url={{ route('offer.destroy', { id: offer.id }) }}>Destroy</a></td>
+                        </tr>
+                    @endeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {{ script('https://code.jquery.com/jquery-3.6.0.min.js') }}
+    {{ script('https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js') }}
+    {{ script('https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js') }}
+    {{ script('app') }}
+</body>
+</html>
